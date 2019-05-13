@@ -11,6 +11,9 @@ query GetDepartment($id: ID!) {
         id
         name
       }
+      projects {
+        nextToken
+      }
     }
     employees {
       items {
@@ -60,6 +63,12 @@ query GetEmployee($id: ID!) {
         nextToken
       }
     }
+    projects {
+      items {
+        id
+      }
+      nextToken
+    }
   }
 }
 query ListEmployees(
@@ -75,6 +84,37 @@ query ListEmployees(
       department {
         id
         name
+      }
+      projects {
+        nextToken
+      }
+    }
+    nextToken
+  }
+}
+query GetProject($id: ID!) {
+  getProject(id: $id) {
+    id
+    name
+    employees {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+query ListProjects(
+  $filter: ModelProjectFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listProjects(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      employees {
+        nextToken
       }
     }
     nextToken

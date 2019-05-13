@@ -39,6 +39,36 @@ export type DeleteEmployeeInput = {
   id?: string | null;
 };
 
+export type CreateEmployeeProjectInput = {
+  id?: string | null;
+  employeeProjectEmployeeId?: string | null;
+  employeeProjectProjectId?: string | null;
+};
+
+export type UpdateEmployeeProjectInput = {
+  id: string;
+  employeeProjectEmployeeId?: string | null;
+  employeeProjectProjectId?: string | null;
+};
+
+export type DeleteEmployeeProjectInput = {
+  id?: string | null;
+};
+
+export type CreateProjectInput = {
+  id?: string | null;
+  name?: string | null;
+};
+
+export type UpdateProjectInput = {
+  id: string;
+  name?: string | null;
+};
+
+export type DeleteProjectInput = {
+  id?: string | null;
+};
+
 export type ModelDepartmentFilterInput = {
   id?: ModelIDFilterInput | null;
   name?: ModelStringFilterInput | null;
@@ -94,6 +124,14 @@ export type ModelIntFilterInput = {
   between?: Array<number | null> | null;
 };
 
+export type ModelProjectFilterInput = {
+  id?: ModelIDFilterInput | null;
+  name?: ModelStringFilterInput | null;
+  and?: Array<ModelProjectFilterInput | null> | null;
+  or?: Array<ModelProjectFilterInput | null> | null;
+  not?: ModelProjectFilterInput | null;
+};
+
 export type CreateDepartmentMutation = {
   __typename: "Department";
   id: string;
@@ -107,6 +145,10 @@ export type CreateDepartmentMutation = {
       __typename: "Department";
       id: string;
       name: string | null;
+    } | null;
+    projects: {
+      __typename: "ModelEmployeeProjectConnection";
+      nextToken: string | null;
     } | null;
   } | null;
   employees: {
@@ -135,6 +177,10 @@ export type UpdateDepartmentMutation = {
       id: string;
       name: string | null;
     } | null;
+    projects: {
+      __typename: "ModelEmployeeProjectConnection";
+      nextToken: string | null;
+    } | null;
   } | null;
   employees: {
     __typename: "ModelEmployeeConnection";
@@ -161,6 +207,10 @@ export type DeleteDepartmentMutation = {
       __typename: "Department";
       id: string;
       name: string | null;
+    } | null;
+    projects: {
+      __typename: "ModelEmployeeProjectConnection";
+      nextToken: string | null;
     } | null;
   } | null;
   employees: {
@@ -195,6 +245,14 @@ export type CreateEmployeeMutation = {
       nextToken: string | null;
     } | null;
   } | null;
+  projects: {
+    __typename: "ModelEmployeeProjectConnection";
+    items: Array<{
+      __typename: "EmployeeProject";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type UpdateEmployeeMutation = {
@@ -216,6 +274,14 @@ export type UpdateEmployeeMutation = {
       __typename: "ModelEmployeeConnection";
       nextToken: string | null;
     } | null;
+  } | null;
+  projects: {
+    __typename: "ModelEmployeeProjectConnection";
+    items: Array<{
+      __typename: "EmployeeProject";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
   } | null;
 };
 
@@ -239,6 +305,143 @@ export type DeleteEmployeeMutation = {
       nextToken: string | null;
     } | null;
   } | null;
+  projects: {
+    __typename: "ModelEmployeeProjectConnection";
+    items: Array<{
+      __typename: "EmployeeProject";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+};
+
+export type CreateEmployeeProjectMutation = {
+  __typename: "EmployeeProject";
+  id: string;
+  employee: {
+    __typename: "Employee";
+    id: string;
+    name: string | null;
+    age: number | null;
+    department: {
+      __typename: "Department";
+      id: string;
+      name: string | null;
+    } | null;
+    projects: {
+      __typename: "ModelEmployeeProjectConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+  project: {
+    __typename: "Project";
+    id: string;
+    name: string | null;
+    employees: {
+      __typename: "ModelEmployeeProjectConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type UpdateEmployeeProjectMutation = {
+  __typename: "EmployeeProject";
+  id: string;
+  employee: {
+    __typename: "Employee";
+    id: string;
+    name: string | null;
+    age: number | null;
+    department: {
+      __typename: "Department";
+      id: string;
+      name: string | null;
+    } | null;
+    projects: {
+      __typename: "ModelEmployeeProjectConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+  project: {
+    __typename: "Project";
+    id: string;
+    name: string | null;
+    employees: {
+      __typename: "ModelEmployeeProjectConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type DeleteEmployeeProjectMutation = {
+  __typename: "EmployeeProject";
+  id: string;
+  employee: {
+    __typename: "Employee";
+    id: string;
+    name: string | null;
+    age: number | null;
+    department: {
+      __typename: "Department";
+      id: string;
+      name: string | null;
+    } | null;
+    projects: {
+      __typename: "ModelEmployeeProjectConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+  project: {
+    __typename: "Project";
+    id: string;
+    name: string | null;
+    employees: {
+      __typename: "ModelEmployeeProjectConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type CreateProjectMutation = {
+  __typename: "Project";
+  id: string;
+  name: string | null;
+  employees: {
+    __typename: "ModelEmployeeProjectConnection";
+    items: Array<{
+      __typename: "EmployeeProject";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+};
+
+export type UpdateProjectMutation = {
+  __typename: "Project";
+  id: string;
+  name: string | null;
+  employees: {
+    __typename: "ModelEmployeeProjectConnection";
+    items: Array<{
+      __typename: "EmployeeProject";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+};
+
+export type DeleteProjectMutation = {
+  __typename: "Project";
+  id: string;
+  name: string | null;
+  employees: {
+    __typename: "ModelEmployeeProjectConnection";
+    items: Array<{
+      __typename: "EmployeeProject";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type GetDepartmentQuery = {
@@ -254,6 +457,10 @@ export type GetDepartmentQuery = {
       __typename: "Department";
       id: string;
       name: string | null;
+    } | null;
+    projects: {
+      __typename: "ModelEmployeeProjectConnection";
+      nextToken: string | null;
     } | null;
   } | null;
   employees: {
@@ -308,6 +515,14 @@ export type GetEmployeeQuery = {
       nextToken: string | null;
     } | null;
   } | null;
+  projects: {
+    __typename: "ModelEmployeeProjectConnection";
+    items: Array<{
+      __typename: "EmployeeProject";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type ListEmployeesQuery = {
@@ -321,6 +536,38 @@ export type ListEmployeesQuery = {
       __typename: "Department";
       id: string;
       name: string | null;
+    } | null;
+    projects: {
+      __typename: "ModelEmployeeProjectConnection";
+      nextToken: string | null;
+    } | null;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetProjectQuery = {
+  __typename: "Project";
+  id: string;
+  name: string | null;
+  employees: {
+    __typename: "ModelEmployeeProjectConnection";
+    items: Array<{
+      __typename: "EmployeeProject";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+};
+
+export type ListProjectsQuery = {
+  __typename: "ModelProjectConnection";
+  items: Array<{
+    __typename: "Project";
+    id: string;
+    name: string | null;
+    employees: {
+      __typename: "ModelEmployeeProjectConnection";
+      nextToken: string | null;
     } | null;
   } | null> | null;
   nextToken: string | null;
@@ -339,6 +586,10 @@ export type OnCreateDepartmentSubscription = {
       __typename: "Department";
       id: string;
       name: string | null;
+    } | null;
+    projects: {
+      __typename: "ModelEmployeeProjectConnection";
+      nextToken: string | null;
     } | null;
   } | null;
   employees: {
@@ -367,6 +618,10 @@ export type OnUpdateDepartmentSubscription = {
       id: string;
       name: string | null;
     } | null;
+    projects: {
+      __typename: "ModelEmployeeProjectConnection";
+      nextToken: string | null;
+    } | null;
   } | null;
   employees: {
     __typename: "ModelEmployeeConnection";
@@ -393,6 +648,10 @@ export type OnDeleteDepartmentSubscription = {
       __typename: "Department";
       id: string;
       name: string | null;
+    } | null;
+    projects: {
+      __typename: "ModelEmployeeProjectConnection";
+      nextToken: string | null;
     } | null;
   } | null;
   employees: {
@@ -427,6 +686,14 @@ export type OnCreateEmployeeSubscription = {
       nextToken: string | null;
     } | null;
   } | null;
+  projects: {
+    __typename: "ModelEmployeeProjectConnection";
+    items: Array<{
+      __typename: "EmployeeProject";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type OnUpdateEmployeeSubscription = {
@@ -449,6 +716,14 @@ export type OnUpdateEmployeeSubscription = {
       nextToken: string | null;
     } | null;
   } | null;
+  projects: {
+    __typename: "ModelEmployeeProjectConnection";
+    items: Array<{
+      __typename: "EmployeeProject";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type OnDeleteEmployeeSubscription = {
@@ -470,6 +745,143 @@ export type OnDeleteEmployeeSubscription = {
       __typename: "ModelEmployeeConnection";
       nextToken: string | null;
     } | null;
+  } | null;
+  projects: {
+    __typename: "ModelEmployeeProjectConnection";
+    items: Array<{
+      __typename: "EmployeeProject";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+};
+
+export type OnCreateEmployeeProjectSubscription = {
+  __typename: "EmployeeProject";
+  id: string;
+  employee: {
+    __typename: "Employee";
+    id: string;
+    name: string | null;
+    age: number | null;
+    department: {
+      __typename: "Department";
+      id: string;
+      name: string | null;
+    } | null;
+    projects: {
+      __typename: "ModelEmployeeProjectConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+  project: {
+    __typename: "Project";
+    id: string;
+    name: string | null;
+    employees: {
+      __typename: "ModelEmployeeProjectConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type OnUpdateEmployeeProjectSubscription = {
+  __typename: "EmployeeProject";
+  id: string;
+  employee: {
+    __typename: "Employee";
+    id: string;
+    name: string | null;
+    age: number | null;
+    department: {
+      __typename: "Department";
+      id: string;
+      name: string | null;
+    } | null;
+    projects: {
+      __typename: "ModelEmployeeProjectConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+  project: {
+    __typename: "Project";
+    id: string;
+    name: string | null;
+    employees: {
+      __typename: "ModelEmployeeProjectConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type OnDeleteEmployeeProjectSubscription = {
+  __typename: "EmployeeProject";
+  id: string;
+  employee: {
+    __typename: "Employee";
+    id: string;
+    name: string | null;
+    age: number | null;
+    department: {
+      __typename: "Department";
+      id: string;
+      name: string | null;
+    } | null;
+    projects: {
+      __typename: "ModelEmployeeProjectConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+  project: {
+    __typename: "Project";
+    id: string;
+    name: string | null;
+    employees: {
+      __typename: "ModelEmployeeProjectConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type OnCreateProjectSubscription = {
+  __typename: "Project";
+  id: string;
+  name: string | null;
+  employees: {
+    __typename: "ModelEmployeeProjectConnection";
+    items: Array<{
+      __typename: "EmployeeProject";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+};
+
+export type OnUpdateProjectSubscription = {
+  __typename: "Project";
+  id: string;
+  name: string | null;
+  employees: {
+    __typename: "ModelEmployeeProjectConnection";
+    items: Array<{
+      __typename: "EmployeeProject";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+};
+
+export type OnDeleteProjectSubscription = {
+  __typename: "Project";
+  id: string;
+  name: string | null;
+  employees: {
+    __typename: "ModelEmployeeProjectConnection";
+    items: Array<{
+      __typename: "EmployeeProject";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
   } | null;
 };
 
@@ -494,6 +906,10 @@ export class APIService {
               __typename
               id
               name
+            }
+            projects {
+              __typename
+              nextToken
             }
           }
           employees {
@@ -534,6 +950,10 @@ export class APIService {
               id
               name
             }
+            projects {
+              __typename
+              nextToken
+            }
           }
           employees {
             __typename
@@ -572,6 +992,10 @@ export class APIService {
               __typename
               id
               name
+            }
+            projects {
+              __typename
+              nextToken
             }
           }
           employees {
@@ -618,6 +1042,14 @@ export class APIService {
               nextToken
             }
           }
+          projects {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -651,6 +1083,14 @@ export class APIService {
               __typename
               nextToken
             }
+          }
+          projects {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
           }
         }
       }`;
@@ -686,6 +1126,14 @@ export class APIService {
               nextToken
             }
           }
+          projects {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -695,6 +1143,207 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <DeleteEmployeeMutation>response.data.deleteEmployee;
+  }
+  async CreateEmployeeProject(
+    input: CreateEmployeeProjectInput
+  ): Promise<CreateEmployeeProjectMutation> {
+    const statement = `mutation CreateEmployeeProject($input: CreateEmployeeProjectInput!) {
+        createEmployeeProject(input: $input) {
+          __typename
+          id
+          employee {
+            __typename
+            id
+            name
+            age
+            department {
+              __typename
+              id
+              name
+            }
+            projects {
+              __typename
+              nextToken
+            }
+          }
+          project {
+            __typename
+            id
+            name
+            employees {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateEmployeeProjectMutation>response.data.createEmployeeProject;
+  }
+  async UpdateEmployeeProject(
+    input: UpdateEmployeeProjectInput
+  ): Promise<UpdateEmployeeProjectMutation> {
+    const statement = `mutation UpdateEmployeeProject($input: UpdateEmployeeProjectInput!) {
+        updateEmployeeProject(input: $input) {
+          __typename
+          id
+          employee {
+            __typename
+            id
+            name
+            age
+            department {
+              __typename
+              id
+              name
+            }
+            projects {
+              __typename
+              nextToken
+            }
+          }
+          project {
+            __typename
+            id
+            name
+            employees {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateEmployeeProjectMutation>response.data.updateEmployeeProject;
+  }
+  async DeleteEmployeeProject(
+    input: DeleteEmployeeProjectInput
+  ): Promise<DeleteEmployeeProjectMutation> {
+    const statement = `mutation DeleteEmployeeProject($input: DeleteEmployeeProjectInput!) {
+        deleteEmployeeProject(input: $input) {
+          __typename
+          id
+          employee {
+            __typename
+            id
+            name
+            age
+            department {
+              __typename
+              id
+              name
+            }
+            projects {
+              __typename
+              nextToken
+            }
+          }
+          project {
+            __typename
+            id
+            name
+            employees {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteEmployeeProjectMutation>response.data.deleteEmployeeProject;
+  }
+  async CreateProject(
+    input: CreateProjectInput
+  ): Promise<CreateProjectMutation> {
+    const statement = `mutation CreateProject($input: CreateProjectInput!) {
+        createProject(input: $input) {
+          __typename
+          id
+          name
+          employees {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateProjectMutation>response.data.createProject;
+  }
+  async UpdateProject(
+    input: UpdateProjectInput
+  ): Promise<UpdateProjectMutation> {
+    const statement = `mutation UpdateProject($input: UpdateProjectInput!) {
+        updateProject(input: $input) {
+          __typename
+          id
+          name
+          employees {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateProjectMutation>response.data.updateProject;
+  }
+  async DeleteProject(
+    input: DeleteProjectInput
+  ): Promise<DeleteProjectMutation> {
+    const statement = `mutation DeleteProject($input: DeleteProjectInput!) {
+        deleteProject(input: $input) {
+          __typename
+          id
+          name
+          employees {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteProjectMutation>response.data.deleteProject;
   }
   async GetDepartment(id: string): Promise<GetDepartmentQuery> {
     const statement = `query GetDepartment($id: ID!) {
@@ -711,6 +1360,10 @@ export class APIService {
               __typename
               id
               name
+            }
+            projects {
+              __typename
+              nextToken
             }
           }
           employees {
@@ -796,6 +1449,14 @@ export class APIService {
               nextToken
             }
           }
+          projects {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -824,6 +1485,10 @@ export class APIService {
               id
               name
             }
+            projects {
+              __typename
+              nextToken
+            }
           }
           nextToken
         }
@@ -843,6 +1508,65 @@ export class APIService {
     )) as any;
     return <ListEmployeesQuery>response.data.listEmployees;
   }
+  async GetProject(id: string): Promise<GetProjectQuery> {
+    const statement = `query GetProject($id: ID!) {
+        getProject(id: $id) {
+          __typename
+          id
+          name
+          employees {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetProjectQuery>response.data.getProject;
+  }
+  async ListProjects(
+    filter?: ModelProjectFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListProjectsQuery> {
+    const statement = `query ListProjects($filter: ModelProjectFilterInput, $limit: Int, $nextToken: String) {
+        listProjects(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            name
+            employees {
+              __typename
+              nextToken
+            }
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListProjectsQuery>response.data.listProjects;
+  }
   OnCreateDepartmentListener: Observable<
     OnCreateDepartmentSubscription
   > = API.graphql(
@@ -861,6 +1585,10 @@ export class APIService {
               __typename
               id
               name
+            }
+            projects {
+              __typename
+              nextToken
             }
           }
           employees {
@@ -897,6 +1625,10 @@ export class APIService {
               id
               name
             }
+            projects {
+              __typename
+              nextToken
+            }
           }
           employees {
             __typename
@@ -931,6 +1663,10 @@ export class APIService {
               __typename
               id
               name
+            }
+            projects {
+              __typename
+              nextToken
             }
           }
           employees {
@@ -973,6 +1709,14 @@ export class APIService {
               nextToken
             }
           }
+          projects {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
         }
       }`
     )
@@ -1002,6 +1746,14 @@ export class APIService {
               __typename
               nextToken
             }
+          }
+          projects {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
           }
         }
       }`
@@ -1033,8 +1785,193 @@ export class APIService {
               nextToken
             }
           }
+          projects {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
         }
       }`
     )
   ) as Observable<OnDeleteEmployeeSubscription>;
+
+  OnCreateEmployeeProjectListener: Observable<
+    OnCreateEmployeeProjectSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateEmployeeProject {
+        onCreateEmployeeProject {
+          __typename
+          id
+          employee {
+            __typename
+            id
+            name
+            age
+            department {
+              __typename
+              id
+              name
+            }
+            projects {
+              __typename
+              nextToken
+            }
+          }
+          project {
+            __typename
+            id
+            name
+            employees {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`
+    )
+  ) as Observable<OnCreateEmployeeProjectSubscription>;
+
+  OnUpdateEmployeeProjectListener: Observable<
+    OnUpdateEmployeeProjectSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateEmployeeProject {
+        onUpdateEmployeeProject {
+          __typename
+          id
+          employee {
+            __typename
+            id
+            name
+            age
+            department {
+              __typename
+              id
+              name
+            }
+            projects {
+              __typename
+              nextToken
+            }
+          }
+          project {
+            __typename
+            id
+            name
+            employees {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`
+    )
+  ) as Observable<OnUpdateEmployeeProjectSubscription>;
+
+  OnDeleteEmployeeProjectListener: Observable<
+    OnDeleteEmployeeProjectSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteEmployeeProject {
+        onDeleteEmployeeProject {
+          __typename
+          id
+          employee {
+            __typename
+            id
+            name
+            age
+            department {
+              __typename
+              id
+              name
+            }
+            projects {
+              __typename
+              nextToken
+            }
+          }
+          project {
+            __typename
+            id
+            name
+            employees {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`
+    )
+  ) as Observable<OnDeleteEmployeeProjectSubscription>;
+
+  OnCreateProjectListener: Observable<
+    OnCreateProjectSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateProject {
+        onCreateProject {
+          __typename
+          id
+          name
+          employees {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
+        }
+      }`
+    )
+  ) as Observable<OnCreateProjectSubscription>;
+
+  OnUpdateProjectListener: Observable<
+    OnUpdateProjectSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateProject {
+        onUpdateProject {
+          __typename
+          id
+          name
+          employees {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
+        }
+      }`
+    )
+  ) as Observable<OnUpdateProjectSubscription>;
+
+  OnDeleteProjectListener: Observable<
+    OnDeleteProjectSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteProject {
+        onDeleteProject {
+          __typename
+          id
+          name
+          employees {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
+        }
+      }`
+    )
+  ) as Observable<OnDeleteProjectSubscription>;
 }

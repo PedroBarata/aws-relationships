@@ -11,6 +11,9 @@ mutation CreateDepartment($input: CreateDepartmentInput!) {
         id
         name
       }
+      projects {
+        nextToken
+      }
     }
     employees {
       items {
@@ -34,6 +37,9 @@ mutation UpdateDepartment($input: UpdateDepartmentInput!) {
         id
         name
       }
+      projects {
+        nextToken
+      }
     }
     employees {
       items {
@@ -56,6 +62,9 @@ mutation DeleteDepartment($input: DeleteDepartmentInput!) {
       department {
         id
         name
+      }
+      projects {
+        nextToken
       }
     }
     employees {
@@ -85,6 +94,12 @@ mutation CreateEmployee($input: CreateEmployeeInput!) {
         nextToken
       }
     }
+    projects {
+      items {
+        id
+      }
+      nextToken
+    }
   }
 }
 mutation UpdateEmployee($input: UpdateEmployeeInput!) {
@@ -104,6 +119,12 @@ mutation UpdateEmployee($input: UpdateEmployeeInput!) {
         nextToken
       }
     }
+    projects {
+      items {
+        id
+      }
+      nextToken
+    }
   }
 }
 mutation DeleteEmployee($input: DeleteEmployeeInput!) {
@@ -122,6 +143,120 @@ mutation DeleteEmployee($input: DeleteEmployeeInput!) {
       employees {
         nextToken
       }
+    }
+    projects {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+mutation CreateEmployeeProject($input: CreateEmployeeProjectInput!) {
+  createEmployeeProject(input: $input) {
+    id
+    employee {
+      id
+      name
+      age
+      department {
+        id
+        name
+      }
+      projects {
+        nextToken
+      }
+    }
+    project {
+      id
+      name
+      employees {
+        nextToken
+      }
+    }
+  }
+}
+mutation UpdateEmployeeProject($input: UpdateEmployeeProjectInput!) {
+  updateEmployeeProject(input: $input) {
+    id
+    employee {
+      id
+      name
+      age
+      department {
+        id
+        name
+      }
+      projects {
+        nextToken
+      }
+    }
+    project {
+      id
+      name
+      employees {
+        nextToken
+      }
+    }
+  }
+}
+mutation DeleteEmployeeProject($input: DeleteEmployeeProjectInput!) {
+  deleteEmployeeProject(input: $input) {
+    id
+    employee {
+      id
+      name
+      age
+      department {
+        id
+        name
+      }
+      projects {
+        nextToken
+      }
+    }
+    project {
+      id
+      name
+      employees {
+        nextToken
+      }
+    }
+  }
+}
+mutation CreateProject($input: CreateProjectInput!) {
+  createProject(input: $input) {
+    id
+    name
+    employees {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+mutation UpdateProject($input: UpdateProjectInput!) {
+  updateProject(input: $input) {
+    id
+    name
+    employees {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+mutation DeleteProject($input: DeleteProjectInput!) {
+  deleteProject(input: $input) {
+    id
+    name
+    employees {
+      items {
+        id
+      }
+      nextToken
     }
   }
 }
