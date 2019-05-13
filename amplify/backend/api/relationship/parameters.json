@@ -1,0 +1,10 @@
+{
+    "AppSyncApiName": "relationship",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authcognito7edf268f",
+            "Outputs.UserPoolId"
+        ]
+    }
+}
