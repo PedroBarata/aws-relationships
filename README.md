@@ -1,6 +1,6 @@
 # Modeling Relationships (1:1 | 1:N | M:N) in GraphQL | AppSync | Amplify | AWS | Angular
 Segundo vídeo do curso
-Vídeo: (vídeo)[https://www.youtube.com/watch?v=eUQvsuO6EnU&list=PLvmxnsCyoh64Pbro7LpHvsuuNMRR8c0eK&index=2]
+Vídeo: [vídeo](https://www.youtube.com/watch?v=eUQvsuO6EnU&list=PLvmxnsCyoh64Pbro7LpHvsuuNMRR8c0eK&index=2)
 
 ## Relationship
 
